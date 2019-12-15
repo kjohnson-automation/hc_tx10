@@ -7,6 +7,7 @@
  - Arduino Uno, though almost all others can probably be used just change the output pin if needed
  - RF Transmitter from original HC-TX10 remote
  - Breadboard/prototyping board
+ - [Arduino DigitalWriteFast Lib](https://code.google.com/archive/p/digitalwritefast/downloads)
 
 I used the Saleae Logic USB Logic Analyzer to get the training sequence as well as the preamble and data sequences for each of the original buttons on the remote and map them to binary sequences.
 

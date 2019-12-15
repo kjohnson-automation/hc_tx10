@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <digitalWriteFast.h>
 int data = 1;
 int led = 13;
 bool DEBUG = false;
@@ -28,7 +29,8 @@ void setup() {
   pinMode(data, OUTPUT);
   pinMode(led, OUTPUT);
   // Configures dataline to be high
-  digitalWrite(data, LOW);
+  digitalWriteFast(data, LOW);
+  digitalWrite(led, LOW);
 }
 
 
@@ -38,12 +40,12 @@ void training() {
   digitalWrite(data, HIGH);
   delayMicroseconds(980);
   for(int c =0; c<16; c++){
-    digitalWrite(data, LOW);
+    digitalWriteFast(data, LOW);
     delayMicroseconds(293);
-    digitalWrite(data, HIGH);
+    digitalWriteFast(data, HIGH);
     delayMicroseconds(293);
     }
-  digitalWrite(data, LOW);
+  digitalWriteFast(data, LOW);
   // delayMicroseconds(3200);
 }
 
@@ -71,8 +73,8 @@ int out_write(char write) {
     }
     return -1;
   }
-  digitalWrite(data, write_var);
-  delayMicroseconds(73);
+  digitalWriteFast(data, write_var);
+  delayMicroseconds(75);
   }
 
 // Pattern Generator - send array and writes pattern out to data
@@ -84,6 +86,7 @@ void send_pattern(char *pattern) {
     Serial.println(pattern);
   }
   // Training sequence before pattern sending
+  digitalWriteFast(led, HIGH);
   training();
   delayMicroseconds(3700);
 
@@ -92,7 +95,8 @@ void send_pattern(char *pattern) {
     out_write(pattern[index]);
     }
   // Makes sure data always returns to LOW
-  digitalWrite(data, LOW);
+  digitalWriteFast(data, LOW);
+  digitalWriteFast(led, LOW);
   }
 /* ******************************************************************* */
 
