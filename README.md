@@ -26,3 +26,10 @@ There is also a document attached that includes all included sequences and a def
 
 An example waveform can be seen here:
 ![Baseband Waveform](/images/waveform.png)
+
+The first part of the waveform is what I've deemed the training pattern, getting the Rx on the lights ready for the data transmission, after that we have the coded preamble followed by the actual sequence data used to set the lights for the operation specified.
+It can be broken up as follows:
+ - Training Pattern
+ - 3.8mS Wait
+ - Preamble (10001110111011101)
+ - Data
