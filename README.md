@@ -23,3 +23,6 @@ void new_sequence(){
 ```
 
 There is also a document attached that includes all included sequences and a defined preamble.  The preamble is not used for anything but is obviously common on all captured data signals.
+
+An example waveform can be seen here:
+![Baseband Waveform](/images/waveform.png)
