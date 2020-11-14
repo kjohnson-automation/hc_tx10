@@ -16,8 +16,6 @@ bool DEBUG = false;
  *  Auto    Sequence = 100011101110111011101110111010001110100010001000100010001000111011
  */
 
-
-
 // the setup routine runs once when you press reset:
 void setup() {
   // Setting up debug serial:
@@ -39,7 +37,7 @@ void training() {
   // training sequence = :
   digitalWrite(data, HIGH);
   delayMicroseconds(980);
-  for(int c =0; c<16; c++){
+  for(int c=0; c<16; c++){
     digitalWriteFast(data, LOW);
     delayMicroseconds(293);
     digitalWriteFast(data, HIGH);
