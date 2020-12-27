@@ -72,9 +72,9 @@ void setup() {
 
 
 //training sequence needed before any signal
-void training() {
+//void training() {
   // training sequence = 111101010101010101010101010101010101
-  char training sequence [] = "111101010101010101010101010101010101"
+//  char training sequence [] = "111101010101010101010101010101010101";
 //  digitalWrite(data, HIGH);
 //  delayMicroseconds(980);
 //  for(int c=0; c<16; c++){
@@ -85,7 +85,7 @@ void training() {
 //    }
 //  digitalWriteFast(data, LOW);
 //  // delayMicroseconds(3200);
-}
+//}
 
 int out_write(char write) {
   int write_var;
@@ -124,14 +124,18 @@ void send_pattern(char *pattern) {
     Serial.println(pattern);
   }
   // Training sequence before pattern sending
-  digitalWriteFast(led, HIGH);
-  training();
-  delayMicroseconds(3700);
-
+  char training_sequence [] = "111101010101010101010101010101010101";
+  char zeroes [] = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+//  digitalWriteFast(led, HIGH);
+//  training();
+//  delayMicroseconds(3700);
   // Actual Pattern generation
-  for (int index=0; index < strlen(pattern); index++){
-    out_write(pattern[index]);
-    }
+  char full_sequence [] = training_sequence + zeroes + pattern;
+//  for (int index=0; index < strlen(pattern); index++){
+//    out_write(pattern[index]);
+//    }
+  driver.send((unit8_t *)full_sequence, strlen(full_sequence));
+  driver.waitPacketSent();
   // Makes sure data always returns to LOW
   digitalWriteFast(data, LOW);
   digitalWriteFast(led, LOW);
